@@ -58,4 +58,24 @@ public class RaceController {
         return ResponseEntity.ok(updatedRace);
     }
 
+    // GET: Calculate average running time for a specific race programmatically
+    @GetMapping("/getAverageTime/{raceId}")
+    public ResponseEntity<?> getAverageTime(@PathVariable Long raceId) {
+        if (!raceRepository.existsById(raceId)) {
+                return ResponseEntity.notFound().build();
+            }
+
+            List<Result> results = resultRepository.findByRaceId(raceId);
+            if (results.isEmpty()) {
+                return ResponseEntity.ok().body("No results available for this race.");
+            }
+
+            double average = results.stream()
+                                    .mapToInt(Result::getTimeResult)
+                                    .average()
+                                    .orElse(Double.NaN);
+
+            return ResponseEntity.ok().body("Average time: " + average + " minutes");
+    }
+
 }
