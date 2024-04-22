@@ -9,6 +9,7 @@ import com.runningrace.repository.RunnerRepository;
 @RestController
 @RequestMapping("/api")
 public class RunnerController {
+    
     @Autowired
     private RunnerRepository runnerRepository;
 
@@ -16,6 +17,12 @@ public class RunnerController {
     @GetMapping("/getRunners")
     public List<Runner> getAllRunners() {
         return runnerRepository.findAll();
+    }
+
+    // POST: Create a new runner
+    @PostMapping
+    public Runner createRunner(@RequestBody Runner runner) {
+        return runnerRepository.save(runner);
     }
 
 }
