@@ -32,6 +32,30 @@ public class RaceController {
 
         List<Result> results = resultRepository.findByRaceIdOrderByTimeResultAsc(id);
         return ResponseEntity.ok(results);
+
+    }
+
+    @PutMapping("/updateRace")  // Use PUT for update operations
+    public ResponseEntity<Race> updateRace(@RequestBody Race raceDetails) {
+        // Validate the request body
+        if (raceDetails == null || raceDetails.getId() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        // Find the existing race by ID
+        Optional<Race> raceOptional = raceRepository.findById(raceDetails.getId());
+        if (!raceOptional.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Update the race details
+        Race raceToUpdate = raceOptional.get();
+        raceToUpdate.setName(raceDetails.getName());
+        raceToUpdate.setDistance(raceDetails.getDistance());
+        final Race updatedRace = raceRepository.save(raceToUpdate);
+
+        // Return the updated race
+        return ResponseEntity.ok(updatedRace);
     }
 
 }
