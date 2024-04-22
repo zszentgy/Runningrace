@@ -2,6 +2,9 @@ package com.runningrace.model;
 
 import lombok.Data;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +22,7 @@ public class Race {
     private double distance; // Distance in kilometers
 
     @OneToMany(mappedBy = "race")
+    @JsonManagedReference
     private List<Result> results; // Results associated with this race
 
     // Default constructor
