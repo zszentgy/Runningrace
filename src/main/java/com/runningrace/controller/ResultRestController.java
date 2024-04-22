@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-public class ResultController {
+public class ResultRestController {
 
     @Autowired
     private ResultRepository resultRepository;

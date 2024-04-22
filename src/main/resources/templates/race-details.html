@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${race.name}">Race Details</title>
+</head>
+<body>
+    <h1 th:text="${race.name}">Race Name</h1>
+    <h2>Participants and Results</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Participant Name</th>
+                <th>Time Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="result : ${results}">
+                <td th:text="${result.runner.name}">Participant Name</td>
+                <td th:text="${result.timeResult}">Time Result</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/races">Back to Races List</a>
+</body>
+</html>

@@ -8,7 +8,7 @@ import com.runningrace.repository.RunnerRepository;
 
 @RestController
 @RequestMapping("/api")
-public class RunnerController {
+public class RunnerRestController {
 
     @Autowired
     private RunnerRepository runnerRepository;

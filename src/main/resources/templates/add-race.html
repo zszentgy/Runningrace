@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Race</title>
+</head>
+<body>
+    <h1>Add a New Race</h1>
+    <form action="#" th:action="@{/addRace}" th:object="${race}" method="post">
+        <div>
+            <label for="name">Race Name:</label>
+            <input type="text" id="name" name="name" th:value="*{name}" />
+        </div>
+        <div>
+            <label for="distance">Distance (km):</label>
+            <input type="text" id="distance" name="distance" th:value="*{distance}" />
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>

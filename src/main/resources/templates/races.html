@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Races</title>
+</head>
+<body>
+    <h1>Races</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Distance (km)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="race : ${races}">
+                <td>
+                    <!-- Link to the race details page -->
+                    <a th:href="@{/races/{id}(id=${race.id})}" th:text="${race.name}">Race Name</a>
+                </td>
+                <td th:text="${race.distance}">Race Distance</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
